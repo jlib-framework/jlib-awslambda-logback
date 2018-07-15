@@ -5,11 +5,11 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.MDC;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,22 +21,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LogTest {
 
     private ByteArrayOutputStream byteOut;
-    private PrintStream outMock;
-    private PrintStream out;
+    private PrintStream originalStandardOut;
 
     @BeforeEach
     public void mockStandardOut() {
         byteOut = new ByteArrayOutputStream();
-        outMock = new PrintStream(byteOut);
 
-        out = System.out;
+        originalStandardOut = System.out;
 
-        System.setOut(outMock);
+        System.setOut(new PrintStream(byteOut));
     }
 
     @AfterEach
     public void revertStandardOut() {
-        System.setOut(out);
+        System.setOut(originalStandardOut);
     }
 
     @Test
