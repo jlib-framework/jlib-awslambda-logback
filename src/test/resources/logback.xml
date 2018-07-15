@@ -1,0 +1,13 @@
+<configuration>
+
+    <appender name="lambda" class="org.jlib.cloud.aws.lambda.logback.LambdaAppender">
+        <encoder type="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %X{AWSRequestId:-NO-REQUEST-ID} %.-6level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="lambda"/>
+    </root>
+
+</configuration>
