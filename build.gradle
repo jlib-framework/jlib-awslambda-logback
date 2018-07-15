@@ -22,11 +22,16 @@
 plugins {
     id 'java'
     id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'maven-publish'
 }
 
 group = 'org.jlib'
 version = '1.0.0-SNAPSHOT'
 description = 'jlib AWS Lambda Logback Adapter'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
 
 repositories {
     mavenLocal()
@@ -54,5 +59,17 @@ lombok {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
 }
 
