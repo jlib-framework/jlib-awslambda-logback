@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/jlib-awslambda-logback.iml" filepath="$PROJECT_DIR$/jlib-awslambda-logback.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jlib-awslambda-logback_main.iml" filepath="$PROJECT_DIR$/.idea/modules/jlib-awslambda-logback_main.iml" group="jlib-awslambda-logback" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jlib-awslambda-logback_test.iml" filepath="$PROJECT_DIR$/.idea/modules/jlib-awslambda-logback_test.iml" group="jlib-awslambda-logback" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jlib-aws-lambda-logback.iml" filepath="$PROJECT_DIR$/.idea/modules/jlib-aws-lambda-logback.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jlib-aws-lambda-logback_main.iml" filepath="$PROJECT_DIR$/.idea/modules/jlib-aws-lambda-logback_main.iml" group="jlib-aws-lambda-logback" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jlib-aws-lambda-logback_test.iml" filepath="$PROJECT_DIR$/.idea/modules/jlib-aws-lambda-logback_test.iml" group="jlib-aws-lambda-logback" />
     </modules>
   </component>
 </project>

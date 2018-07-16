@@ -5,6 +5,16 @@
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="awsl_main" target="1.8" />
+      <module name="awsl_test" target="1.8" />
+      <module name="bla_main" target="1.8" />
+      <module name="bla_test" target="1.8" />
+      <module name="j_main" target="1.8" />
+      <module name="j_test" target="1.8" />
+      <module name="jlib-aws-lambda-logback_main" target="1.8" />
+      <module name="jlib-aws-lambda-logback_test" target="1.8" />
+      <module name="jlib-aws-lambda_main" target="1.8" />
+      <module name="jlib-aws-lambda_test" target="1.8" />
       <module name="jlib-awslambda-logback_main" target="1.8" />
       <module name="jlib-awslambda-logback_test" target="1.8" />
     </bytecodeTargetLevel>
