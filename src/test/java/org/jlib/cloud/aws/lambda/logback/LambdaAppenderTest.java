@@ -110,8 +110,8 @@ public class LambdaAppenderTest {
         logger.debug("14m6d4 15 höt");
 
         // then
-        assertThat(byteOut.toString())
-                .isEqualTo("[DEBUG] <special.Logger> 14m6d4 15 höt" + lineSeparator());
+        assertThat(byteOut)
+                .hasToString("[DEBUG] <special.Logger> 14m6d4 15 höt" + lineSeparator());
     }
 
 }
