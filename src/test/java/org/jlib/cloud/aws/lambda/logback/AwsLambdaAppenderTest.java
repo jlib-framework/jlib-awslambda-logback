@@ -44,11 +44,11 @@ public class AwsLambdaAppenderTest {
         // logback.xml present
 
         // when
-        log.info("14m6d4 15 höt");
+        log.info("14m6d4 15 cöö1");
 
         // then
         assertThat(byteOut.toString())
-                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] NO-REQUEST-ID INFO o.j.c.a.l.l.AwsLambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
+                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] <request-id-not-set-by-lambda-runtime> INFO  o.j.c.a.l.l.AwsLambdaAppenderTest - 14m6d4 15 cöö1" + lineSeparator() + "$");
     }
 
     @Test
@@ -72,14 +72,14 @@ public class AwsLambdaAppenderTest {
 
         // given
         // logback.xml present and
-        MDC.put(requestIdMdcKey, "jlib-15-c001");
+        MDC.put(requestIdMdcKey, "l099in95-3a5y-w1th-jlib-1t5c0015tuff");
 
         // when
-        log.info("14m6d4 15 höt");
+        log.info("14m6d4 15 cöö1");
 
         // then
         assertThat(byteOut.toString())
-                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] jlib-15-c001 INFO o.j.c.a.l.l.AwsLambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
+                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] <l099in95-3a5y-w1th-jlib-1t5c0015tuff> INFO  o.j.c.a.l.l.AwsLambdaAppenderTest - 14m6d4 15 cöö1" + lineSeparator() + "$");
 
         // cleanup
         MDC.remove(requestIdMdcKey);
