@@ -18,7 +18,7 @@ import static java.lang.System.lineSeparator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-public class LambdaAppenderTest {
+public class AwsLambdaAppenderTest {
 
     private ByteArrayOutputStream byteOut;
     private PrintStream originalStandardOut;
@@ -48,7 +48,7 @@ public class LambdaAppenderTest {
 
         // then
         assertThat(byteOut.toString())
-                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] NO-REQUEST-ID INFO o.j.c.a.l.l.LambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
+                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] NO-REQUEST-ID INFO o.j.c.a.l.l.AwsLambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LambdaAppenderTest {
 
         // then
         assertThat(byteOut.toString())
-                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] jlib-15-c001 INFO o.j.c.a.l.l.LambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
+                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] jlib-15-c001 INFO o.j.c.a.l.l.AwsLambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
 
         // cleanup
         MDC.remove(requestIdMdcKey);
@@ -96,7 +96,7 @@ public class LambdaAppenderTest {
         encoder.setContext(lc);
         encoder.start();
 
-        LambdaAppender appender = new LambdaAppender();
+        AwsLambdaAppender appender = new AwsLambdaAppender();
         appender.setEncoder(encoder);
         appender.setContext(lc);
         appender.start();

@@ -8,14 +8,14 @@ import com.amazonaws.services.lambda.runtime.LambdaRuntime;
 import com.amazonaws.services.lambda.runtime.LambdaRuntimeInternal;
 import lombok.Setter;
 
-public class LambdaAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
+public class AwsLambdaAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
 
     private final LambdaLogger logger = LambdaRuntime.getLogger();
 
     @Setter
     private Encoder<ILoggingEvent> encoder;
 
-    public LambdaAppender() {
+    public AwsLambdaAppender() {
         LambdaRuntimeInternal.setUseLog4jAppender(true);
     }
 
