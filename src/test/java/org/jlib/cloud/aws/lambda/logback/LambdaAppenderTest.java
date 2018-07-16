@@ -18,7 +18,7 @@ import static java.lang.System.lineSeparator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-public class LogTest {
+public class LambdaAppenderTest {
 
     private ByteArrayOutputStream byteOut;
     private PrintStream originalStandardOut;
@@ -48,7 +48,7 @@ public class LogTest {
 
         // then
         assertThat(byteOut.toString())
-                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] NO-REQUEST-ID INFO o.j.c.a.l.l.LogTest - 14m6d4 15 höt" + lineSeparator() + "$");
+                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] NO-REQUEST-ID INFO o.j.c.a.l.l.LambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LogTest {
 
         // then
         assertThat(byteOut.toString())
-                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] jlib-15-c001 INFO o.j.c.a.l.l.LogTest - 14m6d4 15 höt" + lineSeparator() + "$");
+                .matches("\\[\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\] jlib-15-c001 INFO o.j.c.a.l.l.LambdaAppenderTest - 14m6d4 15 höt" + lineSeparator() + "$");
 
         // cleanup
         MDC.remove(requestIdMdcKey);
