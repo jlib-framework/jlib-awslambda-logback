@@ -22,3 +22,16 @@ Log the request id provided by the AWS Lambda runtime
 
 ##### Configuration
 ###### XML (src/main/resources/logback.xml)
+    <configuration>
+    
+        <appender name="lambda" class="org.jlib.cloud.aws.lambda.logback.AwsLambdaAppender">
+            <encoder type="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] &lt;%-36X{AWSRequestId:-request-id-not-set-by-lambda-runtime}&gt; %-5level %logger{10} - %msg%n</pattern>
+            </encoder>
+        </appender>
+    
+        <root level="INFO">
+            <appender-ref ref="lambda" />
+        </root>
+    
+    </configuration>
