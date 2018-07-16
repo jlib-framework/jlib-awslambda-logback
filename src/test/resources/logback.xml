@@ -7,7 +7,7 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="lambda"/>
+        <appender-ref ref="lambda" />
     </root>
 
 </configuration>
