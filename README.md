@@ -73,17 +73,34 @@ This library does not require further configuration. Just add the dependency.
 ###### XML (src/main/resources/logback.xml)
     <configuration>
     
-        <appender name="lambda" class="org.jlib.cloud.aws.lambda.logback.AwsLambdaAppender">
+        <appender name="awslambda" class="org.jlib.cloud.aws.lambda.logback.AwsLambdaAppender">
             <encoder type="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
                 <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] &lt;%-36X{AWSRequestId:-request-id-not-set-by-lambda-runtime}&gt; %-5level %logger{10} - %msg%n</pattern>
             </encoder>
         </appender>
     
         <root level="INFO">
-            <appender-ref ref="lambda" />
+            <appender-ref ref="awslambda" />
         </root>
     
     </configuration>
+    
+##### Code
+To log information from your Lambda application, just get the logger for your class and output the message:
+
+    import org.slf4j.Logger;
+    import org.slf4j.LoggerFactory;
+    ...
+    
+    public class MyHandler {
+    
+        private static final Logger log = LoggerFactory.getLogger(MyHandler.class);
+         
+        public void handle(Context context) {
+            log.info("My lambda is called '{}'.", context.getFunctionName());
+            ...
+        }
+    }
 
 #### License
 Copyright 2018 Igor Akkerman
