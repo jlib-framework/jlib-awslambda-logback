@@ -21,20 +21,24 @@ Simply by including an MDC reference to this id in the encoder pattern, will add
 The encoder pattern is specified in the Logback configuration, e.g. `logback.xml`.
 Please refer to the Logback documentation for details on how to use the [MDC](https://logback.qos.ch/manual/mdc.html). 
 
-##### Small footprint for faster deployment and cold starts
+##### Save up to 700kB for faster deployment and cold starts
 One goal when building Lambda applications should be to keep the application archive as small as possible.
 This allows for a faster deployment of the application when uploading its archive to AWS.
-It also soeeds up the initial loading of the application, also known as cold start.
+It also soeeds up the initial loading of the application, also known as _cold start_.
 
-When depending on logback-classic in Maven or Gradle, 
+_Up to 700kB_ can be saved when using this library.
+
+When depending on `logback-classic` in Maven or Gradle, 
 the dependency tree includes a transitive dependency to `com.sun.mail:javax.mail`.
 When building an archive for the Lambda application,
 this transitive dependency is included in the archive.
 It raises the archive size by around 700kB.
 This happens whether the application is packaged as an uber-jar or as a zip archive.
-
 This library excludes this transitive dependency 
 in order to minimize the archive size of the Lambda application.
+
+Alternative approaches using other Logging implementations for SLF4J produce archives at least
+about 100kB larger than the archive including this library.
 
 #### Usage
 ##### Dependency
