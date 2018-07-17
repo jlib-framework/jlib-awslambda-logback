@@ -36,20 +36,26 @@ This happens whether the application is packaged as an uber-jar or as a zip arch
 This library excludes this transitive dependency 
 in order to minimize the archive size of the Lambda application.
 
-
 #### Usage
 ##### Dependency
 ###### Gradle (build.gradle)
     dependencies {
-        implementation 'org.jlib:jlib-awslambda-logback:1.0.0'
+        implementation 'org.slf4j:slf4j-api:1.8.0-beta2'
+        runtimeOnly 'org.jlib:jlib-awslambda-logback:1.0.0'
     }
     
 ###### Maven (pom.xml)
     <dependencies>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.8.0-beta2</version>
+        </dependency>
+        <dependency>
             <groupId>org.jlib/groupId>
             <artifactId>jlib-awslambda-logback/artifactId>
             <version>1.0.0</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
