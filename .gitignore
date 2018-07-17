@@ -1,0 +1,10 @@
+# Gradle
+.gradle
+gen
+bin
+build
+
+# IntelliJ IDEA
+/.idea/workspace.xml
+**/.idea/libraries
+out
