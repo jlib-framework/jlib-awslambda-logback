@@ -40,6 +40,12 @@ in order to minimize the archive size of the Lambda application.
 Alternative approaches using other Logging implementations for SLF4J produce archives at least
 about 100kB larger than the archive including this library.
 
+##### No extra build information for uber jar
+Some logging implementations for SLF4J require additional handling during the build process when creating an uber-jar.
+For instance, log4j2 requires the `maven-shade-plugin.log4j2-cachefile-transformer` to be executed while producing the archive.
+
+This library does not require further configuration. Just add the dependency.
+
 #### Usage
 ##### Dependency
 ###### Gradle (build.gradle)
