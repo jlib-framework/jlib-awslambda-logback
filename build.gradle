@@ -24,9 +24,9 @@ plugins {
     id 'io.franzbecker.gradle-lombok' version '1.14'
     id 'maven-publish'
     id 'signing'
+    id 'net.researchgate.release' version '2.6.0'
 }
 group = 'org.jlib'
-version = '1.0.0-SNAPSHOT'
 description = 'jlib AWS Lambda Logback Adapter'
 
 task sourceJar(type: Jar) {
@@ -123,6 +123,8 @@ publishing {
 signing {
   sign publishing.publications.mavenJava
 }
+
+afterReleaseBuild.dependsOn publishMavenJavaPublicationToStagingRepository
 
 model {
     // optional, for my reference
