@@ -7,12 +7,12 @@ from [AWS Lambda](https://aws.amazon.com/de/lambda) code.
 
 #### Features
 ##### Trouble-free multi-line logging
-Instead of writing to the standard output, this library uses the `RuntimeLogger` provided by the AWS Lambda SDK.
+Instead of writing to the standard output, this library uses the `LambdaLogger` provided by the AWS Lambda SDK.
 This allows to avoid issues with exception stacktraces or other messages spanning across multiple lines.
 Consequently, there is no need for complex handlings of newline characters, 
 e.g. replacement by carriage return characters.
 
-For example, when working with CloudWatch Logs, a multi-line-message will be registered as a single event,
+For example, a multi-line-message will be registered as a single event in CloudWatch Logs,
 not as multiple events, one per line written to the log.
 
 ##### AWS Request Id in every log message

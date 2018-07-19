@@ -5,6 +5,23 @@
     <JavaCodeStyleSettings>
       <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999" />
       <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999" />
+      <option name="IMPORT_LAYOUT_TABLE">
+        <value>
+          <package name="com.amazonaws" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="org.slf4j" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="ch.qos.logback" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="javax" withSubpackages="true" static="false" />
+          <package name="java" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="lombok" withSubpackages="true" static="false" />
+          <emptyLine />
+          <package name="" withSubpackages="true" static="false" />
+          <package name="" withSubpackages="true" static="true" />
+        </value>
+      </option>
     </JavaCodeStyleSettings>
     <Properties>
       <option name="KEEP_BLANK_LINES" value="true" />
