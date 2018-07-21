@@ -104,6 +104,9 @@ To log information from your Lambda application, just get the logger for your cl
         }
     }
 
+#### Disclaimer
+“Amazon Web Services" and "AWS" are trademarks of Amazon.com, Inc. or its affiliates in the United States and/or other countries.
+
 #### License
 Copyright 2018 Igor Akkerman
 
