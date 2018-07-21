@@ -111,8 +111,10 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:https://github.com/jlib-framework/jlib-awslambda-logback.git'
+                    connection = 'scm:git:git://github.com/jlib-framework/jlib-awslambda-logback.git'
+                    developerConnection = 'scm:git:git://github.com/jlib-framework/jlib-awslambda-logback.git'
                     url = 'https://github.com/jlib-framework/jlib-awslambda-logback'
+                    tag = project.version
                 }
             }
         }
