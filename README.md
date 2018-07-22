@@ -9,14 +9,15 @@ to [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Wh
 from [AWS Lambda](https://aws.amazon.com/de/lambda) code.
 
 #### Features
-##### Trouble-free multi-line logging
-Instead of writing to the standard output, this library uses the `LambdaLogger` provided by the AWS Lambda SDK.
-This allows to avoid issues with exception stacktraces or other messages spanning across multiple lines.
-Consequently, there is no need for complex handlings of newline characters, 
-e.g. replacement by carriage return characters.
+##### Multi-line logging to CloudWatch Logs
+The library handles stacktraces and other messages spanning across multiple lines.
+When writing a multi-line text to the standard output, 
+CloudWatch Logs registers every line of this taxt as a separate event.
 
-For example, a multi-line-message will be registered as a single event in CloudWatch Logs,
-not as multiple events, one per line written to the log.
+Instead of writing to the standard output, this library uses the `LambdaLogger` provided by the AWS Lambda SDK,
+and CloudWatch Logs treats the whole multi-line message as a single event.
+Consequently, the developer does not need to handle newline characters, 
+e.g. by replacing them by carriage return characters.
 
 ##### AWS Request Id in every log message
 The library also allows to include the `AWSRequestId` provided by the AWS Lambda runtime.
@@ -106,7 +107,7 @@ To log information from your Lambda application, just get the logger for your cl
     }
 
 #### Disclaimer
-“Amazon Web Services" and "AWS" are trademarks of Amazon.com, Inc. or its affiliates in the United States and/or other countries.
+“Amazon Web Services", "AWS", "Lambda" and "CloudWatch" are trademarks of Amazon.com, Inc. or its affiliates in the United States and/or other countries.
 
 #### License
 Copyright 2018 Igor Akkerman
