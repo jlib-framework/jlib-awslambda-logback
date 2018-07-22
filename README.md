@@ -1,7 +1,8 @@
 # jlib AWS Lambda SLF4J/Logback Appender
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jlib/jlib-awslambda-logback/badge.svg?color=red)](https://maven-badges.herokuapp.com/maven-central/org.jlib/jlib-awslambda-logback)
-[![Javadoc](https://www.javadoc.io/badge/org.jlib/jlib-awslambda-logback.svg?color=red)](http://www.javadoc.io/doc/org.jlib/jlib-awslambda-logback)
+[![Build Status](https://travis-ci.org/jlib-framework/jlib-awslambda-logback.svg?branch=master)](https://travis-ci.org/jlib-framework/jlib-awslambda-logback)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jlib/jlib-awslambda-logback/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.jlib/jlib-awslambda-logback)
+[![Javadoc](https://www.javadoc.io/badge/org.jlib/jlib-awslambda-logback.svg)](http://www.javadoc.io/doc/org.jlib/jlib-awslambda-logback)
 
 The _jlib AWS Lambda Logback appender_ library allows to log through [SLF4J](https://www.slf4j.org/)/[Logback](https://logback.qos.ch/) 
 to [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) 
