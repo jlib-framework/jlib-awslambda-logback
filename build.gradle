@@ -28,9 +28,14 @@ plugins {
     id 'net.researchgate.release' version '2.6.0'
 }
 
-group = 'org.jlib'
-description = 'jlib AWS Lambda Logback Adapter'
 archivesBaseName = project.name
+
+group = 'org.jlib'
+
+def jlibScmGitBaseUrl = 'scm:git:git://github.com/jlib-framework'
+def jlibScmHttpsBaseUrl = 'https://github.com/jlib-framework'
+def jlibWebsiteBaseUrl = 'https://www.jlib.org/'
+def developerName = 'Igor Akkerman'
 
 repositories {
     mavenCentral()
@@ -97,8 +102,8 @@ publishing {
 
             pom {
                 name = project.description
-                description = 'jlib Logback Appender to be used in AWS Lambda applications, targeting CloudWatch Logs'
-                url = 'https://www.jlib.org/'
+                description = detailedDescription
+                url = jlibWebsiteBaseUrl
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
@@ -107,13 +112,13 @@ publishing {
                 }
                 developers {
                     developer {
-                        name = 'Igor Akkerman'
+                        name = developerName
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/jlib-framework/jlib-awslambda-logback.git'
-                    developerConnection = 'scm:git:git://github.com/jlib-framework/jlib-awslambda-logback.git'
-                    url = 'https://github.com/jlib-framework/jlib-awslambda-logback'
+                    connection = "${jlibScmGitBaseUrl}/${project.name}.git".toString()
+                    developerConnection = connection
+                    url = "${jlibScmHttpsBaseUrl}/${project.name}.git".toString()
                     tag = project.version
                 }
             }
@@ -176,7 +181,7 @@ model {
 }
 
 private boolean isSnapshot() {
-    version.endsWith('SNAPSHOT')
+    version.endsWith('-SNAPSHOT')
 }
 
 private boolean isRelease() {
