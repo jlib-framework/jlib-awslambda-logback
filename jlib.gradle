@@ -1,0 +1,182 @@
+/*
+ * jlib - Open Source Java Library
+ *
+ *     www.jlib.org
+ *
+ *
+ *     Copyright 2005-2018 Igor Akkerman
+ *
+ *     Licensed under the Apache License, Version 2.0 (the "License");
+ *     you may not use this file except in compliance with the License.
+ *     You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     Unless required by applicable law or agreed to in writing, software
+ *     distributed under the License is distributed on an "AS IS" BASIS,
+ *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *     See the License for the specific language governing permissions and
+ *     limitations under the License.
+ */
+
+/*
+plugins {
+    id 'java'
+    id 'base'
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'maven-publish'
+    id 'signing'
+    id 'net.researchgate.release' version '2.6.0'
+}
+*/
+
+archivesBaseName = project.name
+
+group = 'org.jlib'
+
+def jlibScmGitBaseUrl = 'scm:git:git://github.com/jlib-framework'
+def jlibScmHttpsBaseUrl = 'https://github.com/jlib-framework'
+def jlibWebsiteBaseUrl = 'https://www.jlib.org/'
+def developerName = 'Igor Akkerman'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+
+    testImplementation 'org.assertj:assertj-core:3.10.0'
+
+    testImplementation 'org.slf4j:slf4j-api:1.8.0-beta2'
+}
+
+lombok {
+    version = '1.18.0'
+}
+
+tasks.withType(Javadoc) {
+    title = project.description
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc
+    classifier 'javadoc'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = archivesBaseName
+
+            from components.java
+
+            artifact sourceJar
+            artifact javadocJar
+
+            pom {
+                name = project.description
+                description = detailedDescription
+                url = jlibWebsiteBaseUrl
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        name = developerName
+                    }
+                }
+                scm {
+                    connection = "${jlibScmGitBaseUrl}/${project.name}.git".toString()
+                    developerConnection = connection
+                    url = "${jlibScmHttpsBaseUrl}/${project.name}.git".toString()
+                    tag = project.version
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name "staging"
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+        maven {
+            name "snapshot"
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+signing {
+  sign publishing.publications.mavenJava
+}
+
+afterReleaseBuild.dependsOn publishMavenJavaPublicationToStagingRepository
+
+model {
+    // optional, for my reference
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("${buildDir}/generated-pom.xml")
+    }
+
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn project.tasks.build
+        dependsOn project.tasks.signMavenJavaPublication
+    }
+
+    tasks.publishMavenJavaPublicationToStagingRepository {
+        doFirst {
+            if (isSnapshot())
+                throw new GradleException("SNAPSHOT version cannot be deployed to STAGING repository.")
+        }
+
+        dependsOn project.tasks.signMavenJavaPublication
+    }
+
+    tasks.publishMavenJavaPublicationToSnapshotRepository {
+        doFirst {
+            if (isRelease())
+                throw new GradleException("RELEASE version cannot be deployed to SHAPSHOT repository.")
+        }
+
+        dependsOn project.tasks.signMavenJavaPublication
+    }
+}
+
+private boolean isSnapshot() {
+    version.endsWith('-SNAPSHOT')
+}
+
+private boolean isRelease() {
+    !isSnapshot()
+}
