@@ -8,48 +8,6 @@ The _jlib AWS Lambda Logback appender_ library allows to log through [SLF4J](htt
 to [CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) 
 from [AWS Lambda](https://aws.amazon.com/de/lambda) code.
 
-#### Features
-##### Multi-line logging to CloudWatch Logs
-The library handles stacktraces and other messages spanning across multiple lines.
-When writing a multi-line text to the standard output, 
-CloudWatch Logs registers every line of this taxt as a separate event.
-
-Instead of writing to the standard output, this library uses the `LambdaLogger` provided by the AWS Lambda SDK,
-and CloudWatch Logs treats the whole multi-line message as a single event.
-Consequently, the developer does not need to handle newline characters, 
-e.g. by replacing them by carriage return characters.
-
-##### AWS Request Id in every log message
-The library also allows to include the `AWSRequestId` provided by the AWS Lambda runtime.
-Simply by including an MDC reference to this id in the encoder pattern, will add it to every single log message. 
-The encoder pattern is specified in the Logback configuration, e.g. `logback.xml`.
-Please refer to the Logback documentation for details on how to use the [MDC](https://logback.qos.ch/manual/mdc.html). 
-
-##### Faster deployment and cold starts
-One goal when building Lambda applications should be to keep the application archive as small as possible.
-This allows for a faster deployment of the application when uploading its archive to AWS.
-It also soeeds up the initial loading of the application, also known as _cold start_.
-
-_Up to 700kB_ can be saved when using this library.
-When depending on `logback-classic` in Maven or Gradle, 
-the dependency tree includes a transitive dependency to `com.sun.mail:javax.mail`.
-When building an archive for the Lambda application,
-this transitive dependency is included in the archive.
-It raises the archive size by around 700kB.
-This happens whether the application is packaged as an uber-jar or as a zip archive.
-
-This library excludes this transitive dependency 
-in order to minimize the archive size of the Lambda application.
-
-Alternative approaches using other Logging implementations for SLF4J produce archives at least
-about 100kB larger than the archive including this library.
-
-##### No extra build information for uber jar
-Some logging implementations for SLF4J require additional handling during the build process when creating an uber-jar.
-For instance, log4j2 requires the `maven-shade-plugin.log4j2-cachefile-transformer` to be executed while producing the archive.
-
-This library does not require further configuration. Just add the dependency.
-
 #### Usage
 ##### Dependency
 ###### Gradle (build.gradle)
@@ -105,6 +63,48 @@ To log information from your Lambda application, just get the logger for your cl
             ...
         }
     }
+
+#### Features
+##### Multi-line logging to CloudWatch Logs
+The library handles stacktraces and other messages spanning across multiple lines.
+When writing a multi-line text to the standard output, 
+CloudWatch Logs registers every line of this taxt as a separate event.
+
+Instead of writing to the standard output, this library uses the `LambdaLogger` provided by the AWS Lambda SDK,
+and CloudWatch Logs treats the whole multi-line message as a single event.
+Consequently, the developer does not need to handle newline characters, 
+e.g. by replacing them by carriage return characters.
+
+##### AWS Request Id in every log message
+The library also allows to include the `AWSRequestId` provided by the AWS Lambda runtime.
+Simply by including an MDC reference to this id in the encoder pattern, will add it to every single log message. 
+The encoder pattern is specified in the Logback configuration, e.g. `logback.xml`.
+Please refer to the Logback documentation for details on how to use the [MDC](https://logback.qos.ch/manual/mdc.html). 
+
+##### Faster deployment and cold starts
+One goal when building Lambda applications should be to keep the application archive as small as possible.
+This allows for a faster deployment of the application when uploading its archive to AWS.
+It also soeeds up the initial loading of the application, also known as _cold start_.
+
+_Up to 700kB_ can be saved when using this library.
+When depending on `logback-classic` in Maven or Gradle, 
+the dependency tree includes a transitive dependency to `com.sun.mail:javax.mail`.
+When building an archive for the Lambda application,
+this transitive dependency is included in the archive.
+It raises the archive size by around 700kB.
+This happens whether the application is packaged as an uber-jar or as a zip archive.
+
+This library excludes this transitive dependency 
+in order to minimize the archive size of the Lambda application.
+
+Alternative approaches using other Logging implementations for SLF4J produce archives at least
+about 100kB larger than the archive including this library.
+
+##### No extra build information for uber jar
+Some logging implementations for SLF4J require additional handling during the build process when creating an uber-jar.
+For instance, log4j2 requires the `maven-shade-plugin.log4j2-cachefile-transformer` to be executed while producing the archive.
+
+This library does not require further configuration. Just add the dependency.
 
 #### Disclaimer
 “Amazon Web Services", "AWS", "Lambda" and "CloudWatch" are trademarks of Amazon.com, Inc. or its affiliates in the United States and/or other countries.
