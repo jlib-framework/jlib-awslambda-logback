@@ -66,11 +66,13 @@ To log information from your Lambda application, just get the logger for your cl
 
 #### Features
 ##### Multi-line logging to CloudWatch Logs
-The library handles stacktraces and other messages spanning across multiple lines.
-When writing a multi-line text to the standard output, 
-CloudWatch Logs registers every line of this taxt as a separate event.
+The library handles stacktraces and other messages spanning across multiple lines. Each multi-line message is treated as a single CloudWatch Log event.
 
-Instead of writing to the standard output, this library uses the `LambdaLogger` provided by the AWS Lambda SDK,
+If you were instead writing a multi-line text to the standard output, 
+CloudWatch Logs would register every line of this text as a separate event.
+
+To ensure a single event per multi-line message, this library does not write to the standard output. 
+It uses the `LambdaLogger` provided by the AWS Lambda SDK,
 and CloudWatch Logs treats the whole multi-line message as a single event.
 Consequently, the developer does not need to handle newline characters, 
 e.g. by replacing them by carriage return characters.
