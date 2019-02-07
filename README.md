@@ -77,10 +77,12 @@ and CloudWatch Logs treats the whole multi-line message as a single event.
 Consequently, the developer does not need to handle newline characters, 
 e.g. by replacing them by carriage return characters.
 
-##### AWS Request Id in every log message
-The library also allows to include the `AWSRequestId` provided by the AWS Lambda runtime.
-Simply by including an MDC reference to this id in the encoder pattern, will add it to every single log message. 
-The encoder pattern is specified in the Logback configuration, e.g. `logback.xml`.
+##### Tracing of requests through AWS request id in every log message
+When dealing with multiple requests, it can be hard to identify to which request a specific response belongs.
+This library helps to trace requests by allowing to include a unique request id to every single log message.
+The `AWSRequestId` is provided by the AWS Lambda runtime.
+Simply include an MDC reference to this id into the encoder pattern, and the id will be added to every single log message. 
+The encoder pattern can be specified in the Logback configuration, e.g. `logback.xml`.
 Please refer to the Logback documentation for details on how to use the [MDC](https://logback.qos.ch/manual/mdc.html). 
 
 ##### Faster deployment and cold starts
