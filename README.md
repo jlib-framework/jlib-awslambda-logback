@@ -65,7 +65,7 @@ To log information from your Lambda application, just get the logger for your cl
     }
 
 #### Features
-##### Multi-line logging to CloudWatch Logs
+##### Clean Multi-Line Logging to CloudWatch Logs
 The library handles stacktraces and other messages spanning across multiple lines. Each multi-line message is treated as a single CloudWatch Log event.
 
 If you were instead writing a multi-line text to the standard output, 
@@ -77,7 +77,7 @@ and CloudWatch Logs treats the whole multi-line message as a single event.
 Consequently, the developer does not need to handle newline characters, 
 e.g. by replacing them by carriage return characters.
 
-##### Tracing of requests through AWS request id in every log message
+##### Request Tracing 
 When dealing with multiple requests, it can be hard to identify to which request a specific response belongs.
 This library helps to trace requests by allowing to include a unique request id to every single log message.
 The `AWSRequestId` is provided by the AWS Lambda runtime.
@@ -85,7 +85,7 @@ Simply include an MDC reference to this id into the encoder pattern, and the id 
 The encoder pattern can be specified in the Logback configuration, e.g. `logback.xml`.
 Please refer to the Logback documentation for details on how to use the [MDC](https://logback.qos.ch/manual/mdc.html). 
 
-##### Faster deployment and cold starts
+##### Faster Deployment and Cold Starts
 One goal when building Lambda applications should be to keep the application archive as small as possible.
 This allows for a faster deployment of the application when uploading its archive to AWS.
 It also speeds up the initial loading of the application, also known as _cold start_.
@@ -104,7 +104,7 @@ in order to minimize the archive size of the Lambda application.
 Alternative approaches using other Logging implementations for SLF4J produce archives at least
 about 100kB larger than the archive including this library.
 
-##### No extra build information for uber jar
+##### Simple Build for Uber Jar
 Some logging implementations for SLF4J require additional handling during the build process when creating an uber-jar.
 For instance, log4j2 requires the `maven-shade-plugin.log4j2-cachefile-transformer` to be executed while producing the archive.
 
