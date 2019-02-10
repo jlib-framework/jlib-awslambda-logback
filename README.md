@@ -88,7 +88,7 @@ Please refer to the Logback documentation for details on how to use the [MDC](ht
 ##### Faster deployment and cold starts
 One goal when building Lambda applications should be to keep the application archive as small as possible.
 This allows for a faster deployment of the application when uploading its archive to AWS.
-It also soeeds up the initial loading of the application, also known as _cold start_.
+It also speeds up the initial loading of the application, also known as _cold start_.
 
 _Up to 700kB_ can be saved when using this library.
 When depending on `logback-classic` in Maven or Gradle, 
