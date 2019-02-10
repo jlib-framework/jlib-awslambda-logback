@@ -114,7 +114,7 @@ This library does not require further configuration. Just add the dependency.
 “Amazon Web Services", "AWS", "Lambda" and "CloudWatch" are trademarks of Amazon.com, Inc. or its affiliates in the United States and/or other countries.
 
 #### License
-Copyright 2018 Igor Akkerman
+Copyright 2019 Igor Akkerman
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
