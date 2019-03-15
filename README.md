@@ -24,8 +24,8 @@ from [AWS Lambda](https://aws.amazon.com/de/lambda) code.
             <version>1.8.0-beta2</version>
         </dependency>
         <dependency>
-            <groupId>org.jlib/groupId>
-            <artifactId>jlib-awslambda-logback/artifactId>
+            <groupId>org.jlib</groupId>
+            <artifactId>jlib-awslambda-logback</artifactId>
             <version>1.0.0</version>
             <scope>runtime</scope>
         </dependency>
