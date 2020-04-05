@@ -29,7 +29,7 @@ plugins {
 }
 
 description = 'jlib AWS Lambda Logback Adapter'
-ext.detailedDescription = 'jlib Logback Appender to be used in AWS Lambda applications, targeting CloudWatch Logs'
+ext.detailedDescription = 'jlib Logback Appender for AWS Lambda applications, targeting CloudWatch Logs'
 
 apply from: 'jlib.gradle'
 
