@@ -8,6 +8,7 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.2/524e0a697e9d62950b2f763d88d35cd8dc82a9a1/lombok-1.18.2.jar" />
         </processorPath>
+        <module name="jlib-awslambda-logback.test" />
         <module name="jlib-awslambda-logback.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
